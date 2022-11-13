@@ -31,6 +31,7 @@ Run the server:
 
 ```bash
   javac ./back/src/main/java/mycat/back/BackApplication.java
+  java ./back/src/main/java/mycat/back/BackApplication
 ```
 
 Open a new terminal screen.
