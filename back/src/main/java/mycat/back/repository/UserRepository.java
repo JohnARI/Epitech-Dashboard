@@ -9,4 +9,5 @@ public interface UserRepository extends MongoRepository<UserModel, String> {
 
   UserModel findByUsername(String username);
 
+
 }

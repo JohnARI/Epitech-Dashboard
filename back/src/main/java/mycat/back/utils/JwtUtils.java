@@ -62,4 +62,15 @@ public class JwtUtils implements Serializable {
     return extractExpiration(token).before(new Date());
   }
 
+  public String parseJwt(String authHeader) {
+    if (authHeader != null && authHeader.startsWith("Bearer ")) {
+      return authHeader.substring(7, authHeader.length());
+    }
+    return null;
+  }
+
+  public String getUserNameFromJwtToken(String token) {
+    return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody().getSubject();
+  }
+
 }

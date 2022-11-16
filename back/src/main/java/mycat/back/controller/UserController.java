@@ -1,46 +1,42 @@
-/*
 package mycat.back.controller;
 
-import mycat.back.model.User;
-import mycat.back.service.IUserService;
+import mycat.back.model.UserModel;
+import mycat.back.repository.UserRepository;
+import mycat.back.services.UserService;
+import mycat.back.utils.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-import java.util.UUID;
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/user")
 public class UserController {
 
   @Autowired
-  private IUserService userService;
+  private UserRepository userRepository;
 
-  @GetMapping("/")
-  public List<User> getAllUsers() {
-    return userService.findAll();
+  @Autowired
+  private UserService userService;
+
+  @Autowired
+  private JwtUtils jwtUtils;
+
+  @GetMapping("/user-widgets")
+  public ArrayList<String> getUserWidgets(UserModel userModel, HttpServletRequest request) {
+    String authorizationHeader = request.getHeader("Authorization");
+    String username = null;
+    String jwtToken = null;
+
+    if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+      jwtToken = authorizationHeader.substring(7);
+      username = jwtUtils.extractUsername(jwtToken);
+    }
+
+    return userService.getUserWidgets(username);
+
   }
-
-  @PostMapping("/create")
-  public User createUser(@RequestBody User user) {
-    user.setId(UUID.randomUUID().toString());
-    return userService.createUser(user);
-  }
-
-  @PostMapping("/update")
-  public User update(@RequestBody User user) {
-    return userService.update(user);
-  }
-
-  @DeleteMapping("/delete/{id}")
-  @ResponseStatus(HttpStatus.OK)
-  public void delete(@PathVariable String id) {
-    userService.delete(id);
-  }
-
-
-
-
 }
-*/

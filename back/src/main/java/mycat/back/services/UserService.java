@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -28,8 +29,22 @@ public class UserService implements UserDetailsService {
     return new User(name, pwd, new ArrayList<>());
   }
 
-  // add widget to user
+  public UserModel getUserByUsername(String username) {
+    return userRepository.findByUsername(username);
+  }
 
-
-
+public ArrayList<String> getUserWidgets(String username) {
+    UserModel userModel = userRepository.findByUsername(username);
+    if (userModel != null) {
+      return userModel.getWidgets();
+    }
+    return null;
+  }
+  public boolean userHasWidget(String username, String widgetName) {
+    UserModel userModel = userRepository.findByUsername(username);
+    if (userModel != null) {
+      return userModel.getWidgets().contains(widgetName);
+    }
+    return false;
+  }
 }

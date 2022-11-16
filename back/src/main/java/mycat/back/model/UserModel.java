@@ -18,7 +18,7 @@ public class UserModel {
   private ArrayList<Object> favoriteListSpotify = new ArrayList<>();
   private String weatherCity;
 
-  private ArrayList<WidgetModel> widgets = new ArrayList<>();
+  private ArrayList<String> widgets = new ArrayList<>();
 
 
   public UserModel() {
@@ -44,11 +44,11 @@ public class UserModel {
     this.password = password;
   }
 
-  public ArrayList<WidgetModel> getWidgets() {
+  public ArrayList<String> getWidgets() {
     return widgets;
   }
 
-  public void setWidgets(ArrayList<WidgetModel> widgets) {
+  public void setWidgets(ArrayList<String> widgets) {
     this.widgets = widgets;
   }
 
