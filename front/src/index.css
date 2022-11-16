@@ -46,7 +46,7 @@ legend {
 }
 /* ==================================================== Component ==================================================== */
 /* ----------------------------------------------- Form ----------------------------------------------- */
-input {
+input, button{
   background-color: white;
   padding: 5px 20px 5px 0px;
   border:none;
@@ -58,10 +58,23 @@ input {
   color: var(--gray0);
   font-weight: 100;
 }
-form input[type= password]:focus, form input[type=text]:focus , form input[type=email]:focus{
+form input[type= password]:focus, form input[type=text]:focus , form input[type=email]:focus, .setWidget button:hover, .spotifySearch button:hover{
   outline:none;
   border-bottom: 3px solid var(--purple4);
   transition: .2s
+}
+.setWidget form > article{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.setWidget > form{
+  display: flex;
+  flex-direction: row;
+}
+.spotifySearch button{
+  margin: 0px 10px 20px;
+
 }
 input[type=submit]{
   width: fit-content;

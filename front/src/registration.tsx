@@ -9,6 +9,7 @@ import registerImage from "./assets/other/registerImage.jpg";
 import logoWhite from "./assets/other/LogoWhite.svg";
 import logoGithub from "./assets/icons/githubLogo.svg";
 import logoTwitter from "./assets/icons/twitterLogo.svg";
+import axios from "axios";
 
 // =============================================== Components ===============================================
 // --------------------------- Login ---------------------------
@@ -106,6 +107,7 @@ export function Register() {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     /* Function used to send a POST request to our API. */
     async function register() {
@@ -120,6 +122,7 @@ export function Register() {
         })
         result = await result.json();
         localStorage.setItem("user-info", JSON.stringify(result));
+        navigate("/dashboard");
     }
 
     return (
@@ -169,6 +172,7 @@ export function Register() {
 export function Logout() {
     /* Component used for logging out. Removes the user from local storage. */
     localStorage.removeItem("user-info");
+    localStorage.removeItem("user-widget");
     console.log("Logged out");
     return <Navigate to="/login" />;
 }

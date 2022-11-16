@@ -18,6 +18,7 @@ const ShowPage = () => {
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/logout" element={<Logout />} />
+                <Route path="/" element={<ComposeDashboard />} />
                 <Route path="/dashboard" element={<ComposeDashboard />} />
                 <Route path="/services" element={<Services />} />
                 <Route path="/settings" element={<Settings />} />
@@ -26,6 +27,7 @@ const ShowPage = () => {
         </Router>
     )
 };
+
 
 // ---------------------------------- Rendering ----------------------------------
 const root = ReactDOM.createRoot(
